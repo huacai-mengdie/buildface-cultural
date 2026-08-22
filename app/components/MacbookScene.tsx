@@ -11,10 +11,10 @@ const CONFIG = {
   hoverLift: 0.035,
   hoverScale: 1.03,
   hoverDamping: 5.8,
-  rimIdleIntensity: 1.1,
-  rimHoverIntensity: 4.2,
+  rimIdleIntensity: 0.55,
+  rimHoverIntensity: 2.4,
   cameraFov: 31,
-  cameraDirection: new THREE.Vector3(2.45, 1.75, 4.9).normalize(),
+  cameraDirection: new THREE.Vector3(1.55, 1.75, 4.9).normalize(),
   desktopWidthOccupancy: 0.47,
   desktopHeightOccupancy: 0.59,
   mobileWidthOccupancy: 0.78,
@@ -45,7 +45,7 @@ export default function MacbookScene({ onLoad, onProgress, onError, onHoverChang
     renderer.shadowMap.type = THREE.PCFShadowMap;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.14;
+    renderer.toneMappingExposure = 0.78;
     renderer.domElement.setAttribute('aria-hidden', 'true');
     host.appendChild(renderer.domElement);
 
@@ -53,13 +53,14 @@ export default function MacbookScene({ onLoad, onProgress, onError, onHoverChang
     const room = new RoomEnvironment();
     const environment = pmrem.fromScene(room, 0.035);
     scene.environment = environment.texture;
+    scene.environmentIntensity = 0.52;
     room.dispose();
     pmrem.dispose();
 
-    scene.add(new THREE.HemisphereLight(0xdce8ff, 0x071233, 1.35));
+    scene.add(new THREE.HemisphereLight(0xdce8ff, 0x071233, 0.86));
 
-    const key = new THREE.DirectionalLight(0xffffff, 3.6);
-    key.position.set(4.6, 7.2, 5.5);
+    const key = new THREE.DirectionalLight(0xffffff, 2.25);
+    key.position.set(4.6, 7.2, 4.2);
     key.castShadow = true;
     key.shadow.mapSize.set(2048, 2048);
     key.shadow.camera.near = 0.1;
@@ -72,7 +73,7 @@ export default function MacbookScene({ onLoad, onProgress, onError, onHoverChang
     key.shadow.normalBias = 0.025;
     scene.add(key);
 
-    const fill = new THREE.DirectionalLight(0xb9caff, 1.15);
+    const fill = new THREE.DirectionalLight(0xb9caff, 0.68);
     fill.position.set(-4.5, 1.2, 3.2);
     scene.add(fill);
 
@@ -124,7 +125,7 @@ export default function MacbookScene({ onLoad, onProgress, onError, onHoverChang
       const hFov = 2 * Math.atan(Math.tan(vFov / 2) * camera.aspect);
       const distanceForHeight = modelSize.y / (2 * Math.tan(vFov / 2) * heightOccupancy);
       const distanceForWidth = modelSize.x / (2 * Math.tan(hFov / 2) * widthOccupancy);
-      const distance = Math.max(distanceForHeight, distanceForWidth, 1.65) * (portrait ? 1.08 : 0.62);
+      const distance = Math.max(distanceForHeight, distanceForWidth, 1.65) * (portrait ? 1.08 : 0.65);
       const target = new THREE.Vector3(0, modelSize.y * (portrait ? 0.42 : 0.44), 0);
       camera.position.copy(target).addScaledVector(CONFIG.cameraDirection, distance);
       camera.lookAt(target);
@@ -146,7 +147,6 @@ export default function MacbookScene({ onLoad, onProgress, onError, onHoverChang
         const center = orientedBounds.getCenter(new THREE.Vector3());
         model.position.set(-center.x, -orientedBounds.min.y, -center.z);
         pivot.add(model);
-        pivot.rotation.y = -0.22;
         pivot.updateMatrixWorld(true);
 
         model.traverse((child) => {
@@ -157,6 +157,8 @@ export default function MacbookScene({ onLoad, onProgress, onError, onHoverChang
         });
 
         modelSize = new THREE.Box3().setFromObject(pivot).getSize(new THREE.Vector3());
+        pivot.rotation.y = -0.2;
+        pivot.updateMatrixWorld(true);
         fitCamera();
         onProgress(100);
         onLoad();
