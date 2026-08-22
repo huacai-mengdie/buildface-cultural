@@ -177,9 +177,11 @@ export default function MacbookScene({ onLoad, onProgress, onError, onHoverChang
       setHovered(interactiveMeshes.length > 0 && raycaster.intersectObjects(interactiveMeshes, false).length > 0);
     };
     const onPointerLeave = () => { pointer.set(2, 2); setHovered(false); };
+    const onScroll = () => { pointer.set(2, 2); setHovered(false); };
     const onResize = () => fitCamera();
     renderer.domElement.addEventListener('pointermove', onPointerMove);
     renderer.domElement.addEventListener('pointerleave', onPointerLeave);
+    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize);
 
     const animate = () => {
@@ -218,6 +220,7 @@ export default function MacbookScene({ onLoad, onProgress, onError, onHoverChang
       cancelAnimationFrame(frame);
       renderer.domElement.removeEventListener('pointermove', onPointerMove);
       renderer.domElement.removeEventListener('pointerleave', onPointerLeave);
+      window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
       scene.traverse((object) => {
         if (!(object instanceof THREE.Mesh)) return;
