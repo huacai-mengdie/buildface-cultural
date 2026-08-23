@@ -64,10 +64,10 @@ export default function Home() {
 
           <nav className="image-hotspots" aria-label="主要导航">
             <a className="hotspot hotspot-brand" href="#" aria-label="筑脸 Buildface 首页" />
-            <a className="hotspot hotspot-service" href="#服务" aria-label="服务" />
-            <a className="hotspot hotspot-team" href="#团队" aria-label="团队" />
-            <a className="hotspot hotspot-process" href="#流程" aria-label="流程" />
-            <button className="hotspot hotspot-cooperate" type="button" aria-label="合作 GO" />
+            <a className="hotspot hotspot-nav hotspot-service" href="#服务" aria-label="服务">服务</a>
+            <a className="hotspot hotspot-nav hotspot-team" href="#团队" aria-label="团队">团队</a>
+            <a className="hotspot hotspot-nav hotspot-process" href="#流程" aria-label="流程">流程</a>
+            <button className="hotspot hotspot-nav hotspot-cooperate" type="button" aria-label="合作 GO">合作GO</button>
           </nav>
 
           <div className="model-stage" aria-label="苹果笔记本电脑三维模型">
