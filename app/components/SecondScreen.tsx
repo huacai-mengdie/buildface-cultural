@@ -86,7 +86,6 @@ export default function SecondScreen() {
     let previousScrollY = window.scrollY;
     let previousScrollTime = performance.now();
     let sectionVisible = false;
-    let carryY = 0;
 
     const getAnchor = (index: number) => {
       const width = stage.clientWidth;
@@ -96,7 +95,7 @@ export default function SecondScreen() {
 
       return {
         x: width * (xPercent / 100),
-        y: height * (0.175 - normalized * normalized * 0.1) + carryY,
+        y: height * (0.175 - normalized * normalized * 0.1),
       };
     };
 
@@ -124,11 +123,6 @@ export default function SecondScreen() {
         1,
       );
       const reducedMotion = reducedMotionQuery.matches;
-      const flowProgress = clamp(-rect.top / viewportHeight, 0, 1.85);
-      const carryIntoThird = clamp(flowProgress, 0, 1) * viewportHeight * 0.7;
-      const carryThroughThird = clamp((flowProgress - 1) / 0.85, 0, 1) * viewportHeight * 0.24;
-      carryY = carryIntoThird + carryThroughThird;
-      stage.style.setProperty('--physics-carry-y', `${carryY.toFixed(2)}px`);
 
       revealCharacters.forEach((character, index) => {
         const start = (index / Math.max(revealCharacters.length - 1, 1)) * 0.42;

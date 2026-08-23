@@ -157,8 +157,6 @@ body { font-family: "Biaoxiaozhi Unbounded", "Microsoft YaHei", "PingFang SC", s
   height: 26.5svh;
   border-bottom: 2px solid rgba(74, 74, 74, .68);
   border-radius: 0 0 50% 50%;
-  transform: translate3d(0, var(--physics-carry-y, 0), 0);
-  will-change: transform;
   pointer-events: none;
 }
 
