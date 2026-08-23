@@ -14,7 +14,7 @@ html, body { width: 100%; min-height: 100%; margin: 0; background: var(--blue); 
 body { font-family: "Biaoxiaozhi Unbounded", "Microsoft YaHei", "PingFang SC", sans-serif; }
 
 .page-shell {
-  min-height: 275svh;
+  min-height: 375svh;
   background: #fff;
 }
 
@@ -172,6 +172,11 @@ body { font-family: "Biaoxiaozhi Unbounded", "Microsoft YaHei", "PingFang SC", s
   width: 100%;
   height: auto;
   pointer-events: none;
+}
+
+.third-screen {
+  min-height: 100svh;
+  background: #adff00;
 }
 
 .background-art {
