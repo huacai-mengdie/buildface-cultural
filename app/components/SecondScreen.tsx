@@ -358,7 +358,6 @@ export default function SecondScreen() {
       <section className="third-screen" aria-label="第三屏内容区域" />
 
       <div ref={stageRef} className="physics-stage" aria-label="可拖拽的服务卡片">
-        <div className="rope-line" aria-hidden="true" />
         {CARD_ITEMS.map((item) => (
           <article className="physics-card" data-physics-card key={item.src}>
             <img src={item.src} alt={item.alt} draggable={false} />
