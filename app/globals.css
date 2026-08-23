@@ -44,13 +44,23 @@ body { font-family: "Biaoxiaozhi Unbounded", "Microsoft YaHei", "PingFang SC", s
   background: #fff;
 }
 
-.second-screen {
-  height: 100svh;
-  min-height: 720px;
+.second-third-flow {
+  position: relative;
+  height: 200svh;
+  min-height: 1440px;
   overflow: hidden;
   isolation: isolate;
+  background: #adff00;
+}
+
+.second-screen {
+  position: relative;
+  z-index: 1;
+  height: 100svh;
+  min-height: 720px;
+  overflow: visible;
   background:
-    linear-gradient(180deg, #fff 0%, #fff 39%, #fbfff4 54%, #dcff9a 77%, #a6ff00 100%);
+    linear-gradient(180deg, #fff 0%, #fff 39%, #fbfff4 54%, #dcff9a 77%, #adff00 100%);
   color: var(--blue);
 }
 
@@ -130,19 +140,25 @@ body { font-family: "Biaoxiaozhi Unbounded", "Microsoft YaHei", "PingFang SC", s
 
 .physics-stage {
   position: absolute;
-  z-index: 2;
-  inset: 36.5% 0 0;
+  z-index: 3;
+  top: 36.5svh;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
 }
 
 .rope-line {
   position: absolute;
   z-index: 0;
-  top: -25.5%;
+  top: -16.2svh;
   left: -7%;
   width: 114%;
-  height: 42%;
+  height: 26.5svh;
   border-bottom: 2px solid rgba(74, 74, 74, .68);
   border-radius: 0 0 50% 50%;
+  transform: translate3d(0, var(--physics-carry-y, 0), 0);
+  will-change: transform;
   pointer-events: none;
 }
 
@@ -155,6 +171,7 @@ body { font-family: "Biaoxiaozhi Unbounded", "Microsoft YaHei", "PingFang SC", s
   margin: 0;
   transform-origin: 50% 5.8%;
   cursor: grab;
+  pointer-events: auto;
   touch-action: none;
   user-select: none;
   will-change: transform;
@@ -175,6 +192,9 @@ body { font-family: "Biaoxiaozhi Unbounded", "Microsoft YaHei", "PingFang SC", s
 }
 
 .third-screen {
+  position: relative;
+  z-index: 0;
+  height: 100svh;
   min-height: 100svh;
   background: #adff00;
 }
@@ -314,12 +334,12 @@ body { font-family: "Biaoxiaozhi Unbounded", "Microsoft YaHei", "PingFang SC", s
   }
 
   .physics-stage {
-    inset: 39% 0 0;
+    top: 39svh;
   }
 
   .rope-line {
-    top: -17%;
-    height: 31%;
+    top: -11svh;
+    height: 20svh;
   }
 
   .physics-card {

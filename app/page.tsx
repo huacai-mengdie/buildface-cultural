@@ -110,7 +110,6 @@ export default function Home() {
       </section>
 
       <SecondScreen />
-      <section className="third-screen" aria-label="第三屏内容区域" />
     </main>
   );
 }

@@ -46,7 +46,7 @@ function RevealText({ text, className = '' }: { text: string; className?: string
 }
 
 export default function SecondScreen() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -86,16 +86,17 @@ export default function SecondScreen() {
     let previousScrollY = window.scrollY;
     let previousScrollTime = performance.now();
     let sectionVisible = false;
+    let carryY = 0;
 
     const getAnchor = (index: number) => {
       const width = stage.clientWidth;
-      const height = stage.clientHeight;
+      const height = Math.min(stage.clientHeight, window.innerHeight);
       const xPercent = ANCHOR_X[index];
       const normalized = (xPercent - 50) / 50;
 
       return {
         x: width * (xPercent / 100),
-        y: height * (0.175 - normalized * normalized * 0.1),
+        y: height * (0.175 - normalized * normalized * 0.1) + carryY,
       };
     };
 
@@ -116,12 +117,18 @@ export default function SecondScreen() {
     const updateReveal = () => {
       scrollFrame = 0;
       const rect = section.getBoundingClientRect();
+      const viewportHeight = Math.max(window.innerHeight, 1);
       const revealProgress = clamp(
-        (window.innerHeight - rect.top) / Math.max(window.innerHeight * 0.72, 1),
+        (viewportHeight - rect.top) / Math.max(viewportHeight * 0.72, 1),
         0,
         1,
       );
       const reducedMotion = reducedMotionQuery.matches;
+      const flowProgress = clamp(-rect.top / viewportHeight, 0, 1.85);
+      const carryIntoThird = clamp(flowProgress, 0, 1) * viewportHeight * 0.7;
+      const carryThroughThird = clamp((flowProgress - 1) / 0.85, 0, 1) * viewportHeight * 0.24;
+      carryY = carryIntoThird + carryThroughThird;
+      stage.style.setProperty('--physics-carry-y', `${carryY.toFixed(2)}px`);
 
       revealCharacters.forEach((character, index) => {
         const start = (index / Math.max(revealCharacters.length - 1, 1)) * 0.42;
@@ -162,6 +169,7 @@ export default function SecondScreen() {
 
       previousScrollY = window.scrollY;
       previousScrollTime = now;
+      renderAllBodies();
     };
 
     const scheduleReveal = () => {
@@ -330,26 +338,30 @@ export default function SecondScreen() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="next-panel second-screen" aria-labelledby="second-screen-title">
-      <div className="second-copy">
-        <h2 id="second-screen-title" className="second-title" aria-label="从一个创意到完整落地">
-          <span className="second-title-line">
-            <RevealText text="从一个" />
-            <RevealText text="创意" className="second-title-lime" />
-          </span>
-          <span className="second-title-line second-title-line-bottom">
-            <span className="second-title-orbit" aria-hidden="true">
-              <span className="reveal-character" data-reveal-character>到</span>
+    <div ref={sectionRef} className="second-third-flow">
+      <section className="next-panel second-screen" aria-labelledby="second-screen-title">
+        <div className="second-copy">
+          <h2 id="second-screen-title" className="second-title" aria-label="从一个创意到完整落地">
+            <span className="second-title-line">
+              <RevealText text="从一个" />
+              <RevealText text="创意" className="second-title-lime" />
             </span>
-            <RevealText text="完整落地" />
-          </span>
-        </h2>
+            <span className="second-title-line second-title-line-bottom">
+              <span className="second-title-orbit" aria-hidden="true">
+                <span className="reveal-character" data-reveal-character>到</span>
+              </span>
+              <RevealText text="完整落地" />
+            </span>
+          </h2>
 
-        <p className="second-subtitle" data-second-subtitle>
-          <span>不提供孤立的单项执行</span>
-          <span>我们把策略、内容、设计、技术和现场串成同一条品牌链路</span>
-        </p>
-      </div>
+          <p className="second-subtitle" data-second-subtitle>
+            <span>不提供孤立的单项执行</span>
+            <span>我们把策略、内容、设计、技术和现场串成同一条品牌链路</span>
+          </p>
+        </div>
+      </section>
+
+      <section className="third-screen" aria-label="第三屏内容区域" />
 
       <div ref={stageRef} className="physics-stage" aria-label="可拖拽的服务卡片">
         <div className="rope-line" aria-hidden="true" />
@@ -359,6 +371,6 @@ export default function SecondScreen() {
           </article>
         ))}
       </div>
-    </section>
+    </div>
   );
 }
