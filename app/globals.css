@@ -7,7 +7,7 @@ body { font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif; }
 
 .page-shell {
   min-height: 275svh;
-  background: var(--blue);
+  background: #fff;
 }
 
 .scroll-stage {
@@ -32,7 +32,7 @@ body { font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif; }
 
 .next-panel {
   min-height: 100svh;
-  background: var(--blue);
+  background: #fff;
 }
 
 .background-art {

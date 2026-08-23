@@ -24,7 +24,7 @@ export default function Home() {
       const travel = Math.max(window.innerHeight * 0.72, 1);
       const progress = Math.min(Math.max(window.scrollY / travel, 0), 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      const motionScale = reducedMotion.matches ? 1 : 1 - eased * 0.055;
+      const motionScale = reducedMotion.matches ? 1 : 1 - eased * 0.2;
       const motionY = reducedMotion.matches ? 0 : eased * -18;
 
       hero.style.setProperty('--hero-scale', motionScale.toFixed(4));
