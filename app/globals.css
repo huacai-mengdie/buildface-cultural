@@ -47,15 +47,6 @@ body { font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif; }
   pointer-events: none;
 }
 
-.top-cleaner {
-  position: absolute;
-  z-index: 1;
-  inset: 0 0 auto;
-  height: 18%;
-  background: var(--blue);
-  pointer-events: none;
-}
-
 .image-hotspots { position: absolute; z-index: 10; inset: 0; pointer-events: none; }
 .hotspot { position: absolute; display: block; border: 0; border-radius: 999px; background: transparent; color: transparent; cursor: pointer; pointer-events: auto; }
 .hotspot:focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
@@ -156,7 +147,6 @@ body { font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif; }
   .background-art { object-position: 50% 50%; }
   .model-stage { transform: translate(0, -1vh); }
   .image-hotspots,
-  .top-cleaner,
   .decor-layer { display: none; }
 }
 

@@ -62,8 +62,6 @@ export default function Home() {
             aria-hidden="true"
           />
 
-          <div className="top-cleaner" aria-hidden="true" />
-
           <nav className="image-hotspots" aria-label="主要导航">
             <a className="hotspot hotspot-brand" href="#" aria-label="筑脸 Buildface 首页">
               <img src="/ui/brand.png" alt="" aria-hidden="true" />
