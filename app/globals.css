@@ -59,7 +59,7 @@ body { font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif; }
 .image-hotspots { position: absolute; z-index: 10; inset: 0; pointer-events: none; }
 .hotspot { position: absolute; display: block; border: 0; border-radius: 999px; background: transparent; color: transparent; cursor: pointer; pointer-events: auto; }
 .hotspot:focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
-.hotspot-brand { left: 9.35%; top: 8.1%; width: 14.3%; height: 5%; border-radius: 0; }
+.hotspot-brand { left: 9.35%; top: 7.6%; width: 13.4%; height: 4.71%; border-radius: 0; }
 .hotspot-brand img { width: 100%; height: 100%; object-fit: contain; }
 .hotspot-nav {
   overflow: hidden;
@@ -73,21 +73,21 @@ body { font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif; }
 .hotspot-nav:focus-visible .button-art-hover { opacity: 1; }
 .hotspot-nav:hover { filter: drop-shadow(0 0 7px rgba(166, 255, 0, .14)); }
 .hotspot-nav:active { transform: scale(.97); }
-.hotspot-service { left: 36.9%; top: 8.15%; width: 6%; height: 4.35%; }
-.hotspot-team { left: 47.4%; top: 8.15%; width: 6%; height: 4.35%; }
-.hotspot-process { left: 57.6%; top: 8.15%; width: 6%; height: 4.35%; }
+.hotspot-service { left: 36.2%; top: 7.87%; width: 5.8%; height: 4.18%; }
+.hotspot-team { left: 46.3%; top: 7.87%; width: 5.8%; height: 4.18%; }
+.hotspot-process { left: 56.4%; top: 7.87%; width: 5.8%; height: 4.18%; }
 .hotspot-cooperate {
-  right: 5.25%;
-  top: 7.45%;
-  width: 13.2%;
-  height: 5.9%;
+  left: 79.8%;
+  top: 7.29%;
+  width: 12.6%;
+  height: 5.33%;
 }
 
 .decor-layer { position: absolute; z-index: 2; inset: 0; overflow: hidden; pointer-events: none; }
 .glitch-decor { position: absolute; display: block; will-change: transform, filter, clip-path; }
-.decor-hash { left: 3.3%; top: 20.8%; width: 7.8%; height: auto; animation: glitch-hash 4.7s steps(1, end) infinite; }
-.decor-arrow { left: 10.9%; top: 53.1%; width: 11.4%; height: auto; animation: glitch-arrow 5.9s steps(1, end) -1.3s infinite; }
-.decor-no1 { left: 76.1%; top: 54.6%; width: 20%; height: auto; animation: glitch-no1 5.2s steps(1, end) -.7s infinite; }
+.decor-hash { left: 3.2%; top: 20.71%; width: 7.83%; height: auto; animation: glitch-hash 4.7s steps(1, end) infinite; }
+.decor-arrow { left: 10.95%; top: 52.93%; width: 11.23%; height: auto; animation: glitch-arrow 5.9s steps(1, end) -1.3s infinite; }
+.decor-no1 { left: 75.7%; top: 54.53%; width: 19.93%; height: auto; animation: glitch-no1 5.2s steps(1, end) -.7s infinite; }
 
 @keyframes glitch-hash {
   0%, 72%, 77%, 100% { transform: translate3d(0, 0, 0); filter: none; clip-path: inset(0); }
@@ -122,7 +122,7 @@ body { font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif; }
   inset: 0;
   width: 100%;
   height: 100%;
-  transform: translate(-1.2vw, -3.2vh);
+  transform: translate(-1.4vw, -3.5vh);
 }
 
 .three-host,
