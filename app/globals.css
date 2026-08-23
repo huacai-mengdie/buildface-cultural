@@ -47,50 +47,73 @@ body { font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif; }
   pointer-events: none;
 }
 
+.top-cleaner {
+  position: absolute;
+  z-index: 1;
+  inset: 0 0 auto;
+  height: 18%;
+  background: var(--blue);
+  pointer-events: none;
+}
+
 .image-hotspots { position: absolute; z-index: 10; inset: 0; pointer-events: none; }
 .hotspot { position: absolute; display: block; border: 0; border-radius: 999px; background: transparent; color: transparent; cursor: pointer; pointer-events: auto; }
 .hotspot:focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
-.hotspot-brand { left: 6.2%; top: 8.4%; width: 16.3%; height: 6.9%; border-radius: 0; }
+.hotspot-brand { left: 9.35%; top: 8.1%; width: 14.3%; height: 5%; border-radius: 0; }
+.hotspot-brand img { width: 100%; height: 100%; object-fit: contain; }
 .hotspot-nav {
-  display: grid;
-  place-items: center;
-  border: max(1px, .055vw) solid var(--lime);
-  background: var(--blue);
-  color: var(--lime);
-  font-family: "Arial Black", "Microsoft YaHei", "PingFang SC", sans-serif;
-  font-size: clamp(15px, 1.75vw, 70px);
-  font-weight: 1000;
-  line-height: 1;
-  letter-spacing: -.08em;
-  text-decoration: none;
-  transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+  overflow: hidden;
+  transition: transform .18s ease, filter .18s ease;
 }
-.hotspot-nav:hover,
-.hotspot-nav:focus-visible {
-  border-color: var(--lime);
-  background: var(--lime);
-  color: var(--blue);
-}
+.button-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity .14s steps(1, end); }
+.button-art-hover { opacity: 0; }
+.hotspot-nav:hover .button-art-default,
+.hotspot-nav:focus-visible .button-art-default { opacity: 0; }
+.hotspot-nav:hover .button-art-hover,
+.hotspot-nav:focus-visible .button-art-hover { opacity: 1; }
+.hotspot-nav:hover { filter: drop-shadow(0 0 7px rgba(166, 255, 0, .14)); }
 .hotspot-nav:active { transform: scale(.97); }
-.hotspot-service { left: 35.2%; top: 9%; width: 6.6%; height: 4.7%; }
-.hotspot-team { left: 46.4%; top: 9%; width: 6.6%; height: 4.7%; }
-.hotspot-process { left: 57.7%; top: 9%; width: 6.6%; height: 4.7%; }
+.hotspot-service { left: 36.9%; top: 8.15%; width: 6%; height: 4.35%; }
+.hotspot-team { left: 47.4%; top: 8.15%; width: 6%; height: 4.35%; }
+.hotspot-process { left: 57.6%; top: 8.15%; width: 6%; height: 4.35%; }
 .hotspot-cooperate {
-  right: 5.6%;
-  top: 8.4%;
-  width: 13.5%;
-  height: 6.2%;
-  border-width: 0;
-  background: var(--lime);
-  color: var(--blue);
-  font-size: clamp(20px, 2.65vw, 106px);
-  letter-spacing: -.08em;
+  right: 5.25%;
+  top: 7.45%;
+  width: 13.2%;
+  height: 5.9%;
 }
-.hotspot-cooperate:hover,
-.hotspot-cooperate:focus-visible {
-  border: max(1px, .055vw) solid var(--lime);
-  background: var(--blue);
-  color: var(--lime);
+
+.decor-layer { position: absolute; z-index: 2; inset: 0; overflow: hidden; pointer-events: none; }
+.glitch-decor { position: absolute; display: block; will-change: transform, filter, clip-path; }
+.decor-hash { left: 3.3%; top: 20.8%; width: 7.8%; height: auto; animation: glitch-hash 4.7s steps(1, end) infinite; }
+.decor-arrow { left: 10.9%; top: 53.1%; width: 11.4%; height: auto; animation: glitch-arrow 5.9s steps(1, end) -1.3s infinite; }
+.decor-no1 { left: 76.1%; top: 54.6%; width: 20%; height: auto; animation: glitch-no1 5.2s steps(1, end) -.7s infinite; }
+
+@keyframes glitch-hash {
+  0%, 72%, 77%, 100% { transform: translate3d(0, 0, 0); filter: none; clip-path: inset(0); }
+  73% { transform: translate3d(5px, -3px, 0) skewX(-2deg); filter: drop-shadow(-5px 0 0 rgba(73, 167, 255, .8)); clip-path: inset(0 0 47% 0); }
+  74% { transform: translate3d(-4px, 2px, 0) skewY(2deg); filter: drop-shadow(5px 0 0 rgba(255, 28, 138, .55)); clip-path: inset(43% 0 11% 0); }
+  75% { transform: translate3d(2px, -1px, 0); filter: none; clip-path: inset(8% 0 68% 0); }
+  76% { transform: translate3d(-2px, 1px, 0); filter: none; clip-path: inset(0); }
+}
+@keyframes glitch-arrow {
+  0%, 60%, 65%, 89%, 93%, 100% { transform: translate3d(0, 0, 0); filter: none; clip-path: inset(0); }
+  61% { transform: translate3d(-5px, 1px, 0) rotate(-.5deg); filter: drop-shadow(6px 0 0 rgba(73, 167, 255, .75)); clip-path: inset(0 0 58% 0); }
+  62% { transform: translate3d(4px, -2px, 0) rotate(.5deg); filter: drop-shadow(-5px 0 0 rgba(255, 28, 138, .48)); clip-path: inset(39% 0 14% 0); }
+  63% { transform: translate3d(-2px, 2px, 0); filter: none; clip-path: inset(69% 0 0 0); }
+  64%, 90% { transform: translate3d(1px, -1px, 0); filter: none; clip-path: inset(0); }
+  91% { transform: translate3d(5px, 0, 0); filter: drop-shadow(-5px 0 0 rgba(73, 167, 255, .65)); clip-path: inset(22% 0 52% 0); }
+  92% { transform: translate3d(-3px, 1px, 0); filter: none; clip-path: inset(0); }
+}
+@keyframes glitch-no1 {
+  0%, 66%, 72%, 84%, 88%, 100% { transform: translate3d(0, 0, 0); filter: none; clip-path: inset(0); }
+  67% { transform: translate3d(6px, -2px, 0) rotate(.35deg); filter: drop-shadow(-7px 0 0 rgba(73, 167, 255, .72)); clip-path: inset(0 0 61% 0); }
+  68% { transform: translate3d(-5px, 3px, 0) rotate(-.35deg); filter: drop-shadow(6px 0 0 rgba(255, 28, 138, .48)); clip-path: inset(35% 0 24% 0); }
+  69% { transform: translate3d(3px, -1px, 0); filter: none; clip-path: inset(72% 0 0 0); }
+  70% { transform: translate3d(-2px, 1px, 0); filter: none; clip-path: inset(0); }
+  71%, 85% { transform: translate3d(0, 0, 0); filter: none; clip-path: inset(0); }
+  86% { transform: translate3d(-4px, 0, 0); filter: drop-shadow(5px 0 0 rgba(73, 167, 255, .62)); clip-path: inset(21% 0 55% 0); }
+  87% { transform: translate3d(3px, 1px, 0); filter: none; clip-path: inset(0); }
 }
 
 .model-stage {
@@ -99,7 +122,7 @@ body { font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif; }
   inset: 0;
   width: 100%;
   height: 100%;
-  transform: translate(-3vw, 2.3vh);
+  transform: translate(-1.2vw, -3.2vh);
 }
 
 .three-host,
@@ -132,10 +155,13 @@ body { font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif; }
 @media (max-aspect-ratio: 4/5) {
   .background-art { object-position: 50% 50%; }
   .model-stage { transform: translate(0, -1vh); }
-  .image-hotspots { display: none; }
+  .image-hotspots,
+  .top-cleaner,
+  .decor-layer { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .001ms !important; animation-duration: .001ms !important; }
   .hero { transform: none; }
+  .glitch-decor { animation: none; }
 }

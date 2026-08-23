@@ -62,13 +62,35 @@ export default function Home() {
             aria-hidden="true"
           />
 
+          <div className="top-cleaner" aria-hidden="true" />
+
           <nav className="image-hotspots" aria-label="主要导航">
-            <a className="hotspot hotspot-brand" href="#" aria-label="筑脸 Buildface 首页" />
-            <a className="hotspot hotspot-nav hotspot-service" href="#服务" aria-label="服务">服务</a>
-            <a className="hotspot hotspot-nav hotspot-team" href="#团队" aria-label="团队">团队</a>
-            <a className="hotspot hotspot-nav hotspot-process" href="#流程" aria-label="流程">流程</a>
-            <button className="hotspot hotspot-nav hotspot-cooperate" type="button" aria-label="合作 GO">合作GO</button>
+            <a className="hotspot hotspot-brand" href="#" aria-label="筑脸 Buildface 首页">
+              <img src="/ui/brand.png" alt="" aria-hidden="true" />
+            </a>
+            <a className="hotspot hotspot-nav hotspot-service" href="#服务" aria-label="服务">
+              <img className="button-art button-art-default" src="/ui/service.png" alt="" aria-hidden="true" />
+              <img className="button-art button-art-hover" src="/ui/service-hover.png" alt="" aria-hidden="true" />
+            </a>
+            <a className="hotspot hotspot-nav hotspot-team" href="#团队" aria-label="团队">
+              <img className="button-art button-art-default" src="/ui/team.png" alt="" aria-hidden="true" />
+              <img className="button-art button-art-hover" src="/ui/team-hover.png" alt="" aria-hidden="true" />
+            </a>
+            <a className="hotspot hotspot-nav hotspot-process" href="#流程" aria-label="流程">
+              <img className="button-art button-art-default" src="/ui/process.png" alt="" aria-hidden="true" />
+              <img className="button-art button-art-hover" src="/ui/process-hover.png" alt="" aria-hidden="true" />
+            </a>
+            <button className="hotspot hotspot-nav hotspot-cooperate" type="button" aria-label="合作 GO">
+              <img className="button-art button-art-default" src="/ui/cooperate.png" alt="" aria-hidden="true" />
+              <img className="button-art button-art-hover" src="/ui/cooperate-hover.png" alt="" aria-hidden="true" />
+            </button>
           </nav>
+
+          <div className="decor-layer" aria-hidden="true">
+            <img className="glitch-decor decor-hash" src="/ui/hash.png" alt="" />
+            <img className="glitch-decor decor-arrow" src="/ui/arrow.png" alt="" />
+            <img className="glitch-decor decor-no1" src="/ui/no1.png" alt="" />
+          </div>
 
           <div className="model-stage" aria-label="苹果笔记本电脑三维模型">
             <MacbookScene
