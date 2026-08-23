@@ -95,7 +95,7 @@ export default function SecondScreen() {
 
       return {
         x: width * (xPercent / 100),
-        y: height * (0.175 - normalized * normalized * 0.1),
+        y: height * (0.103 - normalized * normalized * 0.1),
       };
     };
 
