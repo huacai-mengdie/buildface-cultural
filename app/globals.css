@@ -39,8 +39,139 @@ body { font-family: "Biaoxiaozhi Unbounded", "Microsoft YaHei", "PingFang SC", s
 }
 
 .next-panel {
+  position: relative;
   min-height: 100svh;
   background: #fff;
+}
+
+.second-screen {
+  height: 100svh;
+  min-height: 720px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    linear-gradient(180deg, #fff 0%, #fff 39%, #fbfff4 54%, #dcff9a 77%, #a6ff00 100%);
+  color: var(--blue);
+}
+
+.second-copy {
+  position: absolute;
+  z-index: 5;
+  top: 4.25%;
+  left: 50%;
+  width: min(82vw, 1500px);
+  transform: translateX(-50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.second-title {
+  margin: 0;
+  font-size: clamp(52px, 7.15vw, 150px);
+  font-weight: 400;
+  line-height: .87;
+  letter-spacing: -.065em;
+}
+
+.second-title-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.second-title-line-bottom {
+  margin-top: .18em;
+}
+
+.second-title-lime {
+  color: var(--lime);
+}
+
+.second-title-orbit {
+  display: inline-grid;
+  width: .93em;
+  height: .93em;
+  margin-right: .08em;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--blue);
+  color: var(--lime);
+  line-height: 1;
+  transform: rotate(-9deg);
+}
+
+.second-title-orbit .reveal-character {
+  transform-origin: 50% 50%;
+}
+
+.reveal-character {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(7px);
+  transform: translate3d(0, 34px, 0);
+  will-change: opacity, transform, filter;
+}
+
+.second-subtitle {
+  display: grid;
+  gap: .16em;
+  margin: 1.65em 0 0;
+  color: #505050;
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  font-size: clamp(17px, 1.58vw, 35px);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -.02em;
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  will-change: opacity, transform;
+}
+
+.physics-stage {
+  position: absolute;
+  z-index: 2;
+  inset: 36.5% 0 0;
+}
+
+.rope-line {
+  position: absolute;
+  z-index: 0;
+  top: -25.5%;
+  left: -7%;
+  width: 114%;
+  height: 42%;
+  border-bottom: 2px solid rgba(74, 74, 74, .68);
+  border-radius: 0 0 50% 50%;
+  pointer-events: none;
+}
+
+.physics-card {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: clamp(170px, 15vw, 620px);
+  margin: 0;
+  transform-origin: 50% 5.8%;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  will-change: transform;
+  filter: drop-shadow(0 14px 18px rgba(18, 39, 96, .12));
+}
+
+.physics-card.is-dragging {
+  z-index: 4;
+  cursor: grabbing;
+  filter: drop-shadow(0 24px 28px rgba(18, 39, 96, .2));
+}
+
+.physics-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
 }
 
 .background-art {
@@ -156,10 +287,44 @@ body { font-family: "Biaoxiaozhi Unbounded", "Microsoft YaHei", "PingFang SC", s
   .model-stage { transform: translate(0, -1vh); }
   .image-hotspots,
   .decor-layer { display: none; }
+
+  .second-screen {
+    height: 100svh;
+    min-height: 700px;
+  }
+
+  .second-copy {
+    top: 6%;
+    width: 94vw;
+  }
+
+  .second-title {
+    font-size: clamp(46px, 13.5vw, 92px);
+  }
+
+  .second-subtitle {
+    margin-top: 2em;
+    padding: 0 5vw;
+    font-size: clamp(13px, 3.3vw, 22px);
+  }
+
+  .physics-stage {
+    inset: 39% 0 0;
+  }
+
+  .rope-line {
+    top: -17%;
+    height: 31%;
+  }
+
+  .physics-card {
+    width: clamp(118px, 29vw, 210px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .001ms !important; animation-duration: .001ms !important; }
   .hero { transform: none; }
   .glitch-decor { animation: none; }
+  .reveal-character { filter: none; }
 }

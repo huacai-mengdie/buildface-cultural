@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import MacbookScene from './components/MacbookScene';
+import SecondScreen from './components/SecondScreen';
 
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
@@ -108,7 +109,7 @@ export default function Home() {
         </article>
       </section>
 
-      <section className="next-panel" aria-label="下一内容区域" />
+      <SecondScreen />
     </main>
   );
 }
