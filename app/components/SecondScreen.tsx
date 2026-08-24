@@ -2,11 +2,13 @@
 
 import { useEffect, useRef } from 'react';
 
+const ASSET_BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
 const CARD_ITEMS = [
-  { src: '/second-screen/visual-content.png', alt: '视觉内容' },
-  { src: '/second-screen/brand-empowerment.png', alt: '品牌赋能' },
-  { src: '/second-screen/cultural-development.png', alt: '文创开发' },
-  { src: '/second-screen/digital-intelligence.png', alt: '数字智能' },
+  { src: `${ASSET_BASE}/second-screen/visual-content.png`, alt: '视觉内容' },
+  { src: `${ASSET_BASE}/second-screen/brand-empowerment.png`, alt: '品牌赋能' },
+  { src: `${ASSET_BASE}/second-screen/cultural-development.png`, alt: '文创开发' },
+  { src: `${ASSET_BASE}/second-screen/digital-intelligence.png`, alt: '数字智能' },
 ];
 
 const ANCHOR_X = [21.8, 41.1, 59.5, 77.7];

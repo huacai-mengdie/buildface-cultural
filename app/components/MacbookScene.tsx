@@ -5,6 +5,8 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 
+const ASSET_BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
 const CONFIG = {
   rotationSpeed: 0.64,
   rotationDamping: 4.4,
@@ -134,7 +136,7 @@ export default function MacbookScene({ onLoad, onProgress, onError, onHoverChang
     };
 
     new GLTFLoader().load(
-      '/models/macbook-pro-m5.glb',
+      `${ASSET_BASE}/models/macbook-pro-m5.glb`,
       (gltf) => {
         if (disposed) return;
         const model = gltf.scene;
