@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import ThirdScreen from './ThirdScreen';
 
 const ASSET_BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
@@ -357,7 +358,7 @@ export default function SecondScreen() {
         </div>
       </section>
 
-      <section className="third-screen" aria-label="第三屏内容区域" />
+      <ThirdScreen />
 
       <div ref={stageRef} className="physics-stage" aria-label="可拖拽的服务卡片">
         {CARD_ITEMS.map((item) => (
