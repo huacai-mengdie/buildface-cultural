@@ -276,8 +276,10 @@ export default function FourthScreen({ onRequestClose }: FourthScreenProps) {
         (gltf) => {
           if (!alive) return;
           const root = gltf.scene;
-          let checkoutMesh: THREE_TYPES.Mesh | null = null;
-          let coinMesh: THREE_TYPES.Mesh | null = null;
+          const foundMeshes: {
+            checkout?: THREE_TYPES.Mesh;
+            coin?: THREE_TYPES.Mesh;
+          } = {};
           root.traverse((object) => {
             if (/^Billboard/.test(object.name) || /^Text/.test(object.name)) object.visible = false;
             if (object.name === 'Empty002' || object.name === 'Curve127' || object.name === 'Curve126') object.visible = false;
@@ -286,8 +288,8 @@ export default function FourthScreen({ onRequestClose }: FourthScreenProps) {
             const materials = Array.isArray(object.material) ? object.material : [object.material];
             const materialNames = new Set(materials.map((material) => material.name));
             if (['Dollar', 'Pound', 'Yen', 'Euro'].some((name) => materialNames.has(name))) object.visible = false;
-            if (materialNames.has('GlobalCheckout')) checkoutMesh = object;
-            if (materialNames.has('Coin') && materialNames.has('CoinSide')) coinMesh = object;
+            if (materialNames.has('GlobalCheckout')) foundMeshes.checkout = object;
+            if (materialNames.has('Coin') && materialNames.has('CoinSide')) foundMeshes.coin = object;
             materials.forEach((material) => {
               material.side = THREE.DoubleSide;
               recolorMaterial(material);
@@ -309,15 +311,17 @@ export default function FourthScreen({ onRequestClose }: FourthScreenProps) {
             });
           });
 
-          if (checkoutMesh && checkoutTexture) {
-            const checkoutMaterial = checkoutMesh.material as THREE_TYPES.MeshStandardMaterial;
+          if (foundMeshes.checkout && checkoutTexture) {
+            const checkoutMaterial = foundMeshes.checkout.material as THREE_TYPES.MeshStandardMaterial;
             checkoutMaterial.map = checkoutTexture;
             checkoutMaterial.emissiveMap = checkoutTexture;
             checkoutMaterial.color.set(0xffffff);
             checkoutMaterial.emissive.set(0xffffff);
             checkoutMaterial.needsUpdate = true;
           }
-          if (coinMesh && inscriptionTexture) replaceWithShaoxingCoin(THREE, coinMesh, inscriptionTexture);
+          if (foundMeshes.coin && inscriptionTexture) {
+            replaceWithShaoxingCoin(THREE, foundMeshes.coin, inscriptionTexture);
+          }
           scene.add(root);
 
           const animatedCamera = root.getObjectByName('DutchCamera.001');
